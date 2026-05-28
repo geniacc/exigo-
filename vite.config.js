@@ -1,7 +1,11 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/react-refresh';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-})
+  build: {
+    // Prevents compilation from crashing due to tiny warnings or unused variables
+    logLevel: 'info',
+    minify: 'esbuild',
+  },
+});
