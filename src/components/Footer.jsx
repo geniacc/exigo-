@@ -17,9 +17,8 @@ const itemVariants = {
 };
 
 export default function Footer() {
-  const baseUrl = import.meta.env.BASE_URL;
+  const baseUrl = import.meta.env.BASE_URL || '/';
   return (
-    // Solid slate dark configuration tracking system contrast rules
     <footer className="relative bg-slate-950 pt-20 pb-10 overflow-hidden z-10 text-slate-300 border-t border-slate-900 shadow-[0_-15px_40px_rgba(0,0,0,0.5)]">
 
       {/* Animated Electric Laser Top Border Fluid Line */}
@@ -51,7 +50,7 @@ export default function Footer() {
                 whileHover={{ scale: 1.05, rotate: 2 }}
                 className="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-1.5 shadow-xl transition-all duration-300"
               >
-                <img src={`${baseUrl}logo01.png`} alt="EXIGO Hub Logo" className="w-full h-full object-contain" />
+                <img src={`${baseUrl === '/' ? '' : baseUrl}logo01.png`} alt="EXIGO Hub Logo" className="w-full h-full object-contain" />
               </motion.div>
               <div>
                 <span className="font-black text-2xl text-white tracking-tighter block leading-none">EXIGO</span>
@@ -78,7 +77,7 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Core Ecosystem Nodes Navigation Grid Links */}
+          {/* Clean Sub-Network Grid Array: Digi2L fully cleared */}
           <motion.div variants={itemVariants} className="lg:col-span-4">
             <h4 className="text-[#23b3c8] font-black uppercase tracking-widest text-xs mb-6 flex items-center gap-2">
               <Cpu className="w-4 h-4" /> Subsidiary Network
@@ -86,7 +85,6 @@ export default function Footer() {
             <ul className="space-y-4">
               {[
                 { path: "/urja", label: "Urja Mobility" },
-                { path: "/digi2l", label: "Digi2L Platform" },
                 { path: "/qwiksell", label: "QwikSELL Pipeline" }
               ].map((node) => (
                 <li key={node.path}>

@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, Menu, X } from 'lucide-react';
 
 export default function Navbar() {
-  const baseUrl = import.meta.env.BASE_URL;
+  const baseUrl = import.meta.env.BASE_URL || '/';
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -23,10 +23,10 @@ export default function Navbar() {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
+  // Cleaned navigation matrix: Digi2L completely pulled
   const navLinks = [
     { path: '/', label: 'Overview' },
     { path: '/urja', label: 'Urja Mobility' },
-    { path: '/digi2l', label: 'Digi2L' },
     { path: '/qwiksell', label: 'QwikSELL' }
   ];
 
@@ -45,14 +45,12 @@ export default function Navbar() {
         {/* Animated Brand Logo */}
         <NavLink to="/" className="flex items-center gap-3 group z-50">
           <div className="relative w-12 h-12 rounded-2xl bg-white flex items-center justify-center overflow-hidden p-1.5 shadow-xl shadow-purple-900/10 group-hover:shadow-purple-600/30 transition-all duration-500">
-            {/* Spinning dashed ring on hover */}
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
               className="absolute inset-[-2px] rounded-2xl border border-dashed border-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             />
-            <span className="text-[8px] text-slate-400 font-bold hidden">1_2.jpeg</span>
-            <img src={`${baseUrl}logo01.png`} alt="EXIGO Logo" className="w-full h-full object-contain relative z-10 mix-blend-multiply transition-transform duration-500 group-hover:scale-110" />
+            <img src={`${baseUrl === '/' ? '' : baseUrl}logo01.png`} alt="EXIGO Logo" className="w-full h-full object-contain relative z-10 mix-blend-multiply transition-transform duration-500 group-hover:scale-110" />
           </div>
           <span className="font-black text-2xl tracking-tight text-slate-900 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-700 group-hover:to-blue-600 transition-all duration-300">
             EXIGO
