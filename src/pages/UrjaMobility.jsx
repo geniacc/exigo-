@@ -16,6 +16,7 @@ const popIn = {
 };
 
 export default function UrjaMobility() {
+  const baseUrl = import.meta.env.BASE_URL;
   const revProfitData = [
     { label: 'FY23', value: 4, color: '#7e22ce', secondaryValue: 0.5, secondaryColor: '#3b82f6' },
     { label: 'FY24', value: 13, color: '#7e22ce', secondaryValue: 1.5, secondaryColor: '#3b82f6' },
@@ -86,7 +87,7 @@ export default function UrjaMobility() {
                 <span className="absolute top-6 right-6 text-[10px] text-slate-300 font-mono font-bold hidden group-hover:block transition-all"></span>
 
                 <img
-                  src="/logo02.png"
+                  src={`${baseUrl}logo02.png`}
                   alt="Urja Mobility Wing Asset"
                   className="w-full h-full object-contain relative z-10 drop-shadow-[0_10px_20px_rgba(126,34,206,0.12)] group-hover:scale-105 transition-transform duration-500"
                 />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ExternalLink, Zap, Activity, RefreshCw, BarChart3, ShieldCheck, Layers } from 'lucide-react';
+import { ArrowRight, ExternalLink, BarChart3, ShieldCheck, Layers } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import FloatContainer from '../components/FloatContainer';
 import InteractiveCard from '../components/InteractiveCard';
@@ -19,7 +19,6 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
 };
 
-// Advanced Multi-Axis Random Drift Generator for organic particle floating simulation
 const chaoticDrift = (xValues, yValues, duration, delay = 0) => ({
   animate: {
     x: xValues,
@@ -39,6 +38,9 @@ export default function Home() {
   const { scrollYProgress } = useScroll();
   const yOrb = useTransform(scrollYProgress, [0, 1], [0, 300]);
 
+  // Safely references Vite's base environment string ('/exigo-/') dynamically
+  const baseUrl = import.meta.env.BASE_URL;
+
   const heroPhrases = [
     { prefix: "Powering", highlight: "The Circular Economy" },
     { prefix: "Architecting", highlight: "Tech Lifecycles" },
@@ -54,7 +56,7 @@ export default function Home() {
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
       className="min-h-screen pt-20 pb-32 bg-slate-50 relative overflow-hidden"
     >
-      {/* Background Flowing Blueprint Grid */}
+      {/* Background Grid */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-40 mix-blend-multiply">
         <motion.div
           animate={{ y: [0, 60] }}
@@ -81,7 +83,6 @@ export default function Home() {
               <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" /> Ecosystem Platform Online
             </motion.div>
 
-            {/* Interactive Hero Text Switcher */}
             <div className="mb-6 cursor-pointer select-none group" onClick={cyclePhrase} onMouseEnter={cyclePhrase}>
               <AnimatePresence mode="wait">
                 <motion.h1
@@ -111,17 +112,14 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* ------------------------------------------------------------- */}
-          {/* OPTIMIZED HIGH-DEPTH SATELLITE PARTICLES FIELD */}
-          {/* ------------------------------------------------------------- */}
+          {/* Interactive Chaotic Drift Container Field */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1 }}
             className="relative lg:h-[650px] flex items-center justify-center select-none"
           >
-            {/* The Pivot Center Point Anchor Box */}
             <div className="relative w-80 h-80 lg:w-[28rem] lg:h-[28rem] flex items-center justify-center">
 
-              {/* NODE 01: logo02.png (Urja Mobility) - Shifted top-left out of bounds */}
+              {/* NODE 01: Urja Mobility */}
               <motion.div
                 variants={chaoticDrift([0, 15, -10, 0], [0, -20, 8, 0], 7.5, 0)}
                 animate="animate"
@@ -130,11 +128,11 @@ export default function Home() {
                 className="absolute top-[-30px] left-[-30px] z-20"
               >
                 <Link to="/urja" className="block w-20 h-20 bg-white border-2 border-slate-200/90 shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-2xl p-2.5 flex items-center justify-center hover:border-[#39aad6] transition-colors duration-300 cursor-pointer bg-white">
-                  <img src="/logo02.png" alt="Urja Node Portal Gateway" className="w-full h-full object-contain" />
+                  <img src={`${baseUrl}logo02.png`} alt="Urja Node" className="w-full h-full object-contain" />
                 </Link>
               </motion.div>
 
-              {/* NODE 02: logo03.png (Digi2L Platform) - Normalized and pushed to the top-right margins */}
+              {/* NODE 02: Digi2L Platform */}
               <motion.div
                 variants={chaoticDrift([0, -15, 12, 0], [0, -25, 10, 0], 8.5, 0.4)}
                 animate="animate"
@@ -143,11 +141,11 @@ export default function Home() {
                 className="absolute top-[-40px] right-[-20px] z-20"
               >
                 <Link to="/digi2l" className="block w-20 h-20 bg-white border-2 border-slate-200/90 shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-2xl p-2.5 flex items-center justify-center hover:border-[#983d97] transition-colors duration-300 cursor-pointer bg-white">
-                  <img src="/logo03.png" alt="Digi2L Node Portal Gateway" className="w-full h-full object-contain" />
+                  <img src={`${baseUrl}logo03.png`} alt="Digi2L Node" className="w-full h-full object-contain" />
                 </Link>
               </motion.div>
 
-              {/* NODE 03: logo04.png (QwikSELL Pipeline) - Shifted down away from nucleus text */}
+              {/* NODE 03: QwikSELL Pipeline */}
               <motion.div
                 variants={chaoticDrift([0, -10, 20, 0], [0, 25, -15, 0], 8, 0.2)}
                 animate="animate"
@@ -156,11 +154,11 @@ export default function Home() {
                 className="absolute bottom-[-45px] right-[40px] z-20"
               >
                 <Link to="/qwiksell" className="block w-20 h-20 bg-white border-2 border-slate-200/90 shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-2xl p-2.5 flex items-center justify-center hover:border-[#23b3c8] transition-colors duration-300 cursor-pointer bg-white">
-                  <img src="/logo04.png" alt="QwikSell Node Portal Gateway" className="w-full h-full object-contain" />
+                  <img src={`${baseUrl}logo04.png`} alt="QwikSell Node" className="w-full h-full object-contain" />
                 </Link>
               </motion.div>
 
-              {/* THE CORE NUCLEUS: MAIN EXIGO PLATFORM EMBLEM */}
+              {/* CORE MASTER EMBLEM */}
               <FloatContainer
                 duration={6}
                 className="relative z-10 w-56 h-56 lg:w-72 lg:h-72 rounded-full bg-white/90 backdrop-blur-xl shadow-2xl border-4 border-white flex items-center justify-center p-10 group"
@@ -171,7 +169,7 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-purple-100/30 to-blue-50/30 rounded-full" />
                 <img
-                  src="logo01.png" alt="EXIGO Nucleus Master"
+                  src={`${baseUrl}logo01.png`} alt="EXIGO Nucleus"
                   className="w-full h-full object-contain relative z-10 drop-shadow-2xl group-hover:scale-102 transition-transform duration-300"
                 />
               </FloatContainer>
@@ -181,7 +179,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Corporate Strategy & Threat Modules Pre-loaded context intact */}
+      {/* Info Modules */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-12">
         <div className="grid md:grid-cols-2 gap-8">
           <InteractiveCard className="!bg-white border-slate-200 shadow-xl">
@@ -197,7 +195,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quantitative Traction Dashboard Array */}
+      {/* Traction Metrics Dashboard */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-12">
         <div className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 border border-slate-800 shadow-2xl relative overflow-hidden text-white mb-16">
           <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 via-transparent to-transparent pointer-events-none" />
@@ -228,7 +226,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Comparison Grid Footer Hub Links Block */}
+      {/* Subsidiary Cards Operations Array */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-black text-purple-900 uppercase tracking-tight mb-4">The EXIGO Subsidiary Operations</h2>
@@ -245,7 +243,7 @@ export default function Home() {
                 <motion.div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${card.color} origin-left`} initial={{ scaleX: 0 }} whileHover={{ scaleX: 1 }} transition={{ duration: 0.4 }} />
                 <div>
                   <div className="w-full h-24 border border-slate-200/60 rounded-2xl flex items-center justify-center p-4 mb-6 shadow-sm overflow-hidden relative group-hover:border-purple-300 transition-colors bg-white">
-                    <img src={`/${card.logo}`} alt={`${card.title} Corporate Identity`} className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" />
+                    <img src={`${baseUrl}${card.logo}`} alt={`${card.title} Corporate Identity`} className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" />
                   </div>
                   <h3 className="text-2xl font-black text-slate-900 mb-3 uppercase tracking-tight flex items-center gap-2 group-hover:text-purple-700 transition-colors">
                     {card.title} <ExternalLink className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />

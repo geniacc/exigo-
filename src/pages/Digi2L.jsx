@@ -15,6 +15,7 @@ const staggerContainer = {
 };
 
 export default function Digi2L() {
+  const baseUrl = import.meta.env.BASE_URL;
   // Configured to use exact corporate palette color hex values
   const revData = [
     { label: 'YEAR 01', value: 1.5, color: '#983d97' },
@@ -38,7 +39,7 @@ export default function Digi2L() {
         {/* HEADER BRANDING LAYER */}
         <header className="mb-20 text-center max-w-4xl mx-auto">
           <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="mb-6">
-            <img src="/logo03.png" alt="Digi2L Sub-brand Logo" className="h-16 mx-auto object-contain drop-shadow-md" />
+            <img src={`${baseUrl}logo03.png`} alt="Digi2L Sub-brand Logo" className="h-16 mx-auto object-contain drop-shadow-md" />
           </motion.div>
 
           <motion.h1

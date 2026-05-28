@@ -17,6 +17,7 @@ const itemVariants = {
 };
 
 export default function Footer() {
+  const baseUrl = import.meta.env.BASE_URL;
   return (
     // Solid slate dark configuration tracking system contrast rules
     <footer className="relative bg-slate-950 pt-20 pb-10 overflow-hidden z-10 text-slate-300 border-t border-slate-900 shadow-[0_-15px_40px_rgba(0,0,0,0.5)]">
@@ -50,7 +51,7 @@ export default function Footer() {
                 whileHover={{ scale: 1.05, rotate: 2 }}
                 className="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-1.5 shadow-xl transition-all duration-300"
               >
-                <img src="/logo01.png" alt="EXIGO Hub Logo" className="w-full h-full object-contain" />
+                <img src={`${baseUrl}logo01.png`} alt="EXIGO Hub Logo" className="w-full h-full object-contain" />
               </motion.div>
               <div>
                 <span className="font-black text-2xl text-white tracking-tighter block leading-none">EXIGO</span>

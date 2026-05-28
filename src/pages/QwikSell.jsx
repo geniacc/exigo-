@@ -14,6 +14,7 @@ const popIn = {
 };
 
 export default function QwikSell() {
+  const baseUrl = import.meta.env.BASE_URL;
   const [activeStep, setActiveStep] = useState(0);
 
   // Interactive Simulator States
@@ -79,7 +80,7 @@ export default function QwikSell() {
             <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 25, ease: "linear" }} className="absolute inset-[-8px] rounded-[2.5rem] border-2 border-dashed border-purple-300 opacity-60" />
             <div className="w-44 h-44 lg:w-52 lg:h-52 bg-white rounded-[2rem] border-2 border-slate-200 p-6 shadow-2xl flex items-center justify-center group relative overflow-hidden cursor-pointer">
               <motion.div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-              <img src="/logo04.png" alt="QwikSell Logo" className="w-full h-full object-contain filter drop-shadow-md transition-all duration-500 group-hover:scale-110" />
+              <img src={`${baseUrl}logo04.png`} alt="QwikSell Logo" className="w-full h-full object-contain filter drop-shadow-md transition-all duration-500 group-hover:scale-110" />
             </div>
           </motion.div>
         </header>

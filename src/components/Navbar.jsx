@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, Menu, X } from 'lucide-react';
 
 export default function Navbar() {
+  const baseUrl = import.meta.env.BASE_URL;
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -51,7 +52,7 @@ export default function Navbar() {
               className="absolute inset-[-2px] rounded-2xl border border-dashed border-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             />
             <span className="text-[8px] text-slate-400 font-bold hidden">1_2.jpeg</span>
-            <img src="/logo01.png" alt="EXIGO Logo" className="w-full h-full object-contain relative z-10 mix-blend-multiply transition-transform duration-500 group-hover:scale-110" />
+            <img src={`${baseUrl}logo01.png`} alt="EXIGO Logo" className="w-full h-full object-contain relative z-10 mix-blend-multiply transition-transform duration-500 group-hover:scale-110" />
           </div>
           <span className="font-black text-2xl tracking-tight text-slate-900 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-700 group-hover:to-blue-600 transition-all duration-300">
             EXIGO
