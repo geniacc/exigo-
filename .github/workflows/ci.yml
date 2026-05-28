@@ -1,13 +1,15 @@
-name: Production Build Verification
+name: Deploy Preview to GitHub Pages
 
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+
+# Grant permissions to allow GitHub Actions to write the built site to GitHub Pages
+permissions:
+  contents: write
 
 jobs:
-  verify-build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,9 +25,14 @@ jobs:
     - name: Install Project Dependencies
       run: npm install --legacy-peer-deps
 
-    - name: Grant Executive Binaries Permissions
-      # This explicitly force-grants execution rights to Vite on the Linux virtual machine
-      run: chmod +x node_modules/.bin/vite
+    - name: Install esbuild Dependency
+      run: npm install esbuild --save-dev
 
-    - name: Execute Production Compilation Test
+    - name: Execute Production Build
       run: npm run build
+
+    - name: Deploy Payload to GitHub Pages Branch
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: dist # Vite outputs production files into the 'dist' folder
+        branch: gh-pages # Automatically deploys to a safe tracking branch
