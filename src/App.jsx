@@ -9,9 +9,8 @@ import Footer from './components/Footer';
 
 import Home from './pages/Home';
 import UrjaMobility from './pages/UrjaMobility';
-import Digi2L from './pages/Digi2L';
 import QwikSell from './pages/QwikSell';
-import PartnerWithUs from './pages/PartnerWithUs';
+import PartnerWithUs from './pages/PartnerWithUs'; 
 
 // Handles inner routing mechanics safely under the HashRouter context instance
 function AppContent() {
@@ -32,7 +31,6 @@ function AppContent() {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
             <Route path="/urja" element={<UrjaMobility />} />
-            <Route path="/digi2l" element={<Digi2L />} />
             <Route path="/qwiksell" element={<QwikSell />} />
             <Route path="/contact" element={<PartnerWithUs />} />
           </Routes>

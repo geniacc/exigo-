@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldCheck, Zap, RefreshCw, Activity, CheckCircle2, Send, Terminal, PieChart } from 'lucide-react';
+import { ShieldCheck, Zap, Activity, CheckCircle2, Send, Terminal } from 'lucide-react';
 import InteractiveCard from '../components/InteractiveCard';
 
 const textFadeVariants = {
@@ -16,7 +16,6 @@ export default function PartnerWithUs() {
     const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Safely references Vite's base environment subfolder structure path
     const baseUrl = import.meta.env.BASE_URL || '/';
 
     const nodeConfig = {
@@ -30,16 +29,6 @@ export default function PartnerWithUs() {
             desc: "Deploy smart, IoT-enabled lithium power packs under high-retention BaaS infrastructure leasing models backed by 60-month corporate warranties.",
             logo: "logo02.png"
         },
-        digi2l: {
-            title: "Digi2L Platform",
-            tagline: "Circular Appliance Exchange",
-            accent: "#983d97",
-            metricLabel: "Projected Annual Exchange Volume",
-            unit: "Units Restructured",
-            multiplier: 2200,
-            desc: "Plug into India's premier tech-enabled appliance trade-in matrix via plug-and-play APIs, capturing a massive 35% secondary market growth opportunity.",
-            logo: "logo03.png"
-        },
         qwiksell: {
             title: "QwikSELL Pipeline",
             tagline: "Device Liquidation Channel",
@@ -48,7 +37,7 @@ export default function PartnerWithUs() {
             unit: "INR Evaluated",
             multiplier: 15000,
             desc: "Unlock maximum hardware capital reclamation using automated 50+ parameter real-time AI pricing diagnostic software suites.",
-            logo: "logo04.png" // Ensured reference name correlates correctly
+            logo: "logo04.png"
         }
     };
 
@@ -109,10 +98,9 @@ export default function PartnerWithUs() {
                             <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight mb-1">1. Select Integration Node</h2>
                             <p className="text-sm font-black text-[#4f2876] uppercase tracking-wider mb-6">Choose the ecosystem layer you intend to build upon</p>
 
-                            <div className="grid sm:grid-cols-3 gap-4 mb-8">
+                            <div className="grid sm:grid-cols-2 gap-4 mb-8">
                                 {[
                                     { id: 'urja', label: 'Urja Mobility', icon: <Zap className="w-5 h-5" />, color: 'group-hover:text-[#39aad6]' },
-                                    { id: 'digi2l', label: 'Digi2L Platform', icon: <RefreshCw className="w-5 h-5" />, color: 'group-hover:text-[#983d97]' },
                                     { id: 'qwiksell', label: 'QwikSELL', icon: <Activity className="w-5 h-5" />, color: 'group-hover:text-[#23b3c8]' }
                                 ].map((node) => (
                                     <button
@@ -190,17 +178,6 @@ export default function PartnerWithUs() {
                                                 </motion.p>
                                             </AnimatePresence>
                                         </div>
-
-                                        {/* Interactive 35% Market Callout for Digi2L Node Layer */}
-                                        {selectedNode === 'digi2l' && (
-                                            <motion.div
-                                                initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
-                                                className="inline-flex items-center gap-2 bg-purple-500/20 border border-purple-500/30 p-3 rounded-xl mt-2 text-xs font-bold text-purple-200 shadow-inner"
-                                            >
-                                                <PieChart className="w-4 h-4 text-purple-300 shrink-0" />
-                                                <span>35% Market Opportunity Under Management</span>
-                                            </motion.div>
-                                        )}
                                     </div>
 
                                     {/* Right Node Dynamic Data Metrics Shell & Logo Token Anchor */}

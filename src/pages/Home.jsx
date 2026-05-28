@@ -38,7 +38,6 @@ export default function Home() {
   const { scrollYProgress } = useScroll();
   const yOrb = useTransform(scrollYProgress, [0, 1], [0, 300]);
 
-  // Unified fallback: tries to read Vite's base subfolder path, otherwise defaults to root
   const baseUrl = import.meta.env.BASE_URL || '/';
 
   const heroPhrases = [
@@ -128,25 +127,11 @@ export default function Home() {
                 className="absolute top-[-30px] left-[-30px] z-20"
               >
                 <Link to="/urja" className="block w-20 h-20 bg-white border-2 border-slate-200/90 shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-2xl p-2.5 flex items-center justify-center hover:border-[#39aad6] transition-colors duration-300 cursor-pointer bg-white">
-                  {/* Clean path resolution syntax handles asset tracking perfectly */}
                   <img src={`${baseUrl === '/' ? '' : baseUrl}logo02.png`} alt="Urja Node" className="w-full h-full object-contain" />
                 </Link>
               </motion.div>
 
-              {/* NODE 02: Digi2L Platform */}
-              <motion.div
-                variants={chaoticDrift([0, -15, 12, 0], [0, -25, 10, 0], 8.5, 0.4)}
-                animate="animate"
-                whileHover={{ scale: 1.1, zIndex: 50 }}
-                whileTap={{ scale: 0.95 }}
-                className="absolute top-[-40px] right-[-20px] z-20"
-              >
-                <Link to="/digi2l" className="block w-20 h-20 bg-white border-2 border-slate-200/90 shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-2xl p-2.5 flex items-center justify-center hover:border-[#983d97] transition-colors duration-300 cursor-pointer bg-white">
-                  <img src={`${baseUrl === '/' ? '' : baseUrl}logo03.png`} alt="Digi2L Node" className="w-full h-full object-contain" />
-                </Link>
-              </motion.div>
-
-              {/* NODE 03: QwikSELL Pipeline */}
+              {/* NODE 02: QwikSELL Pipeline */}
               <motion.div
                 variants={chaoticDrift([0, -10, 20, 0], [0, 25, -15, 0], 8, 0.2)}
                 animate="animate"
@@ -191,7 +176,7 @@ export default function Home() {
           <InteractiveCard className="!bg-white border-slate-200 shadow-xl">
             <div className="text-xs font-black text-purple-600 uppercase tracking-widest mb-3">The Platform Architecture</div>
             <h3 className="text-2xl font-black text-purple-700 uppercase tracking-tight mb-4">Tech-Enabled Asset Management</h3>
-            <p className="text-slate-600 font-medium leading-relaxed">EXIGO Cleantech orchestrates a massive, interconnected network. We transform physical liabilities into high-yield, software-managed assets across EV batteries, smart consumer appliances, and digital gadgets.</p>
+            <p className="text-slate-600 font-medium leading-relaxed">EXIGO Cleantech orchestrates a massive, interconnected network. We transform physical liabilities into high-yield, software-managed assets across EV batteries and digital gadgets.</p>
           </InteractiveCard>
         </div>
       </section>
@@ -204,24 +189,18 @@ export default function Home() {
             <div className="text-xs font-black text-indigo-400 uppercase tracking-widest mb-2">Verified Institutional Growth Matrix</div>
             <h2 className="text-3xl font-black uppercase tracking-tight">Ecosystem Financial Yield</h2>
           </div>
-          <div className="grid sm:grid-cols-3 gap-6 text-center md:text-left">
+          <div className="grid sm:grid-cols-2 gap-8 text-center md:text-left">
             <div className="p-6 rounded-2xl bg-slate-950/40 border border-slate-800">
               <div className="w-10 h-10 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-400 mb-4 border border-purple-500/20"><BarChart3 className="w-5 h-5" /></div>
               <div className="text-4xl font-black tracking-tight text-white">$23.3B+</div>
               <div className="text-xs font-bold uppercase tracking-wider text-indigo-400 mt-1">Aggregated Sector TAM</div>
-              <p className="text-xs text-slate-400 mt-3 leading-relaxed">Combining Indian EV eMobility markets ($18.3B) alongside high-velocity pre-owned electronics liquidation channels ($5B).</p>
+              <p className="text-sm text-slate-400 mt-3 leading-relaxed">Combining Indian EV eMobility markets ($18.3B) alongside high-velocity pre-owned electronics liquidation channels ($5B).</p>
             </div>
             <div className="p-6 rounded-2xl bg-slate-950/40 border border-slate-800">
               <div className="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400 mb-4 border border-blue-500/20"><Layers className="w-5 h-5" /></div>
               <div className="text-4xl font-black tracking-tight text-white">₹80 Cr+</div>
               <div className="text-xs font-bold uppercase tracking-wider text-blue-400 mt-1">Assets Under Management</div>
-              <p className="text-xs text-slate-400 mt-3 leading-relaxed">Secured via high-retention (96%) BaaS leasing deployment infrastructures, backed by updated robust 60-month warranty matrices.</p>
-            </div>
-            <div className="p-6 rounded-2xl bg-slate-950/40 border border-slate-800">
-              <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 mb-4 border border-emerald-500/20"><ShieldCheck className="w-5 h-5" /></div>
-              <div className="text-4xl font-black tracking-tight text-white">₹16.5 Cr</div>
-              <div className="text-xs font-bold uppercase tracking-wider text-emerald-400 mt-1">Appliance Exchange ARR</div>
-              <p className="text-xs text-slate-400 mt-3 leading-relaxed">Captured programmatically via a unified plug-and-play API engine expansion layer across 75,000+ active users in 25 cities.</p>
+              <p className="text-sm text-slate-400 mt-3 leading-relaxed">Secured via high-retention (96%) BaaS leasing deployment infrastructures, backed by updated robust 60-month warranty matrices.</p>
             </div>
           </div>
         </div>
@@ -233,13 +212,12 @@ export default function Home() {
           <h2 className="text-3xl font-black text-purple-900 uppercase tracking-tight mb-4">The EXIGO Subsidiary Operations</h2>
           <p className="text-slate-500 font-bold uppercase tracking-widest">Deep-dive into our specialized infrastructure frameworks.</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {[
-            { to: "/urja", title: "Urja Mobility", logo: "logo02.png", desc: "Energy-as-a-Service Hub. Managing $18.3B TAM via a scalable Battery-as-a-Service architecture.", color: "from-blue-600 to-purple-600", mt: "mt-0" },
-            { to: "/digi2l", title: "Digi2L", logo: "logo03.png", desc: "Circular Appliance Exchange. B2B portal driving 9X YoY growth in the refrigerator secondary market.", color: "from-purple-600 to-purple-800", mt: "md:mt-12" },
-            { to: "/qwiksell", title: "QwikSELL", logo: "logo04.png", desc: "Device Liquidation Pipeline. Unlocking maximum value across the $5B pre-owned electronics sector.", color: "from-purple-800 to-blue-900", mt: "md:mt-24" }
+            { to: "/urja", title: "Urja Mobility", logo: "logo02.png", desc: "Energy-as-a-Service Hub. Managing $18.3B TAM via a scalable Battery-as-a-Service architecture.", color: "from-blue-600 to-purple-600" },
+            { to: "/qwiksell", title: "QwikSELL", logo: "logo04.png", desc: "Device Liquidation Pipeline. Unlocking maximum value across the $5B pre-owned electronics sector.", color: "from-purple-800 to-blue-900" }
           ].map((card, i) => (
-            <Link key={i} to={card.to} className={`block ${card.mt}`}>
+            <Link key={i} to={card.to} className="block">
               <InteractiveCard className="h-full group !bg-white border-slate-200 overflow-hidden relative flex flex-col justify-between p-6">
                 <motion.div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${card.color} origin-left`} initial={{ scaleX: 0 }} whileHover={{ scaleX: 1 }} transition={{ duration: 0.4 }} />
                 <div>
