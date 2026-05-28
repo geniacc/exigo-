@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ShieldCheck, Cpu, Award, Milestone, Network, Leaf, Zap } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ShieldCheck, Cpu, Award, Milestone, Network, Leaf, Zap, Plus, Minus } from 'lucide-react';
 import InteractiveCard from '../components/InteractiveCard';
 
 const fadeInUp = {
@@ -19,6 +19,11 @@ const staggerContainer = {
 
 export default function About() {
     const baseUrl = import.meta.env.BASE_URL || '/';
+    const [mobileExpandedIndex, setMobileExpandedIndex] = useState(null);
+
+    const toggleMobileRow = (idx) => {
+        setMobileExpandedIndex(mobileExpandedIndex === idx ? null : idx);
+    };
 
     const differentiators = [
         {
@@ -59,6 +64,10 @@ export default function About() {
         }
     ];
 
+    // Explicit array partitioning for the dual horizontal row structures
+    const firstRowDifferentiators = differentiators.slice(0, 3);
+    const secondRowDifferentiators = differentiators.slice(3, 6);
+
     return (
         <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -91,7 +100,7 @@ export default function About() {
             </div>
 
             {/* SECTION 1: HERO CONTAINER BACKGROUND FIELD */}
-            <section className="relative min-h-[65vh] flex items-center justify-center overflow-hidden bg-slate-950 text-white shadow-xl shadow-slate-950/10">
+            <section className="relative min-h-[50vh] sm:min-h-[65vh] flex items-center justify-center overflow-hidden bg-slate-950 text-white shadow-xl shadow-slate-950/10">
                 <div className="absolute inset-0 z-0 opacity-40 select-none">
                     <img
                         src={`${baseUrl}abouthero.png`}
@@ -101,12 +110,12 @@ export default function About() {
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-b from-slate-950/30 via-slate-950/60 to-slate-50 z-10" />
 
-                <div className="max-w-7xl mx-auto px-6 text-center z-20 relative">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center z-20 relative">
                     <motion.h1
                         initial={{ opacity: 0, y: 25, filter: "blur(4px)" }}
                         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                         transition={{ duration: 0.7, ease: "easeOut" }}
-                        className="text-4xl md:text-7xl font-black uppercase tracking-tight max-w-4xl mx-auto leading-[1.1] text-white drop-shadow-2xl"
+                        className="text-3xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tight max-w-4xl mx-auto leading-[1.2] text-white drop-shadow-2xl"
                     >
                         Increasing life with <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400">
@@ -117,8 +126,8 @@ export default function About() {
             </section>
 
             {/* SECTION 2: CORPORATE STATEMENT PRESENTATION */}
-            <section className="max-w-7xl mx-auto px-6 py-20 relative z-20 mt-[-80px]">
-                <div className="grid lg:grid-cols-12 gap-12 items-center">
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 relative z-20 mt-[-60px] sm:mt-[-80px]">
+                <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
                     {/* Visual Identity Image Frame Token */}
                     <motion.div
@@ -138,21 +147,21 @@ export default function About() {
                     {/* Copy Description Panel */}
                     <motion.div
                         initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer}
-                        className="lg:col-span-7 space-y-6"
+                        className="lg:col-span-7 space-y-6 text-left"
                     >
                         <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/60 backdrop-blur-md border border-purple-200 text-purple-800 text-xs font-black uppercase tracking-widest shadow-md shadow-purple-500/5">
                             <Award className="w-3.5 h-3.5 text-purple-600" /> Corporate Profile Abstract
                         </motion.div>
 
-                        <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight">
+                        <motion.h2 variants={fadeInUp} className="text-2xl sm:text-4xl font-black text-slate-900 uppercase tracking-tight">
                             Exigo Recycling Pvt. Ltd.
                         </motion.h2>
 
-                        <motion.p variants={fadeInUp} className="text-slate-700 font-semibold leading-relaxed text-base md:text-lg">
+                        <motion.p variants={fadeInUp} className="text-slate-700 font-semibold leading-relaxed text-sm sm:text-base lg:text-lg">
                             Exigo Recycling Pvt. Ltd. is a secondary raw materials company specializing in producing low-carbon value materials. For over 10 years, we have actively worked towards developing a closed-loop resource recovery process of materials from end-of-life electronic waste.
                         </motion.p>
 
-                        <motion.p variants={fadeInUp} className="text-slate-600 font-medium leading-relaxed text-sm md:text-base">
+                        <motion.p variants={fadeInUp} className="text-slate-600 font-medium leading-relaxed text-xs sm:text-sm md:text-base">
                             Our sustainable recycling solution is instrumental in contributing to industrial product enhancement and the life cycle extension of natural resources. Our nuanced in-house designed technology empowers circularity in a product’s value chain and ensures net zero waste.
                         </motion.p>
                     </motion.div>
@@ -160,17 +169,17 @@ export default function About() {
             </section>
 
             {/* SECTION 3: STRATEGIC VISION & CORE DIFFERENTIATORS */}
-            <section className="max-w-7xl mx-auto px-6 py-12 relative z-20">
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12 relative z-20">
                 <div className="space-y-12">
 
                     {/* Top Row: Strategic Vision Left & Section Heading Right */}
-                    <div className="grid lg:grid-cols-12 gap-12 items-start">
+                    <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                         {/* Left Sticky Vision Panel */}
                         <div className="lg:col-span-5 space-y-6">
-                            <div className="rounded-[2.5rem] bg-slate-900 border border-slate-800 p-8 shadow-2xl text-white relative overflow-hidden">
+                            <div className="rounded-[2.5rem] bg-slate-900 border border-slate-800 p-6 sm:p-8 shadow-2xl text-white relative overflow-hidden text-left">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-purple-600/10 rounded-full blur-2xl pointer-events-none" />
 
-                                <div className="w-full h-40 border border-slate-800 rounded-2xl overflow-hidden mb-6 bg-slate-950 p-4 flex items-center justify-center">
+                                <div className="w-full h-36 sm:h-40 border border-slate-800 rounded-2xl overflow-hidden mb-6 bg-slate-950 p-4 flex items-center justify-center">
                                     <img
                                         src={`${baseUrl}exigo-vision-1.png`}
                                         alt="Toward a sustainable future - The Exigo Vision"
@@ -181,7 +190,7 @@ export default function About() {
                                 <span className="text-[10px] font-mono font-black text-cyan-400 uppercase tracking-widest block mb-2">
                                     Strategic Intent Pipeline
                                 </span>
-                                <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-4">
+                                <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight mb-4">
                                     Toward a sustainable future - The Exigo Vision
                                 </h3>
                                 <p className="text-xs text-slate-300 font-medium leading-relaxed">
@@ -191,50 +200,125 @@ export default function About() {
                         </div>
 
                         {/* Right Side Section Main Heading Description */}
-                        <div className="lg:col-span-7 space-y-4 pt-4">
+                        <div className="lg:col-span-7 space-y-4 pt-4 text-left">
                             <span className="text-xs font-black text-blue-700 uppercase tracking-widest bg-blue-100/60 border border-blue-200/60 px-3 py-1 rounded-full shadow-sm">
                                 Competitive Advantages
                             </span>
-                            <h3 className="text-2xl md:text-4xl font-black text-slate-900 uppercase tracking-tight leading-tight">
+                            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 uppercase tracking-tight leading-tight">
                                 Transforming the battery recycling industry with competitively differentiated features
                             </h3>
-                            <p className="text-sm text-slate-500 font-semibold leading-relaxed">
+                            <p className="text-xs sm:text-sm text-slate-500 font-semibold leading-relaxed">
                                 Our tailored features build scalable, high-yield commercial value loops that safely power next-generation industrial supply lines.
                             </p>
                         </div>
                     </div>
 
-                    {/* Bottom Full-Width Side-By-Side Grid Matrix */}
+                    {/* DUAL-ROW HORIZONTAL MATRIX GRIDS */}
                     <div className="w-full pt-4">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                            {differentiators.map((feat, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-40px" }}
-                                    transition={{ duration: 0.5, delay: index * 0.04 }}
-                                >
-                                    <InteractiveCard className={`border-2 rounded-[2rem] h-full flex flex-col justify-between p-6 group transition-all duration-300 shadow-lg ${feat.bgShade}`}>
-                                        <div className="space-y-4">
-                                            <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center justify-center transition-colors group-hover:scale-105 duration-300">
-                                                {feat.icon}
+
+                        {/* DESKTOP VIEW: Split exactly into two rows of 3 columns horizontally */}
+                        <div className="hidden sm:flex flex-col gap-5">
+
+                            {/* Row 1: First 3 Items horizontally */}
+                            <div className="grid grid-cols-3 gap-5">
+                                {firstRowDifferentiators.map((feat, index) => (
+                                    <motion.div
+                                        key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.5, delay: index * 0.04 }}
+                                    >
+                                        <InteractiveCard className={`border-2 rounded-[2rem] h-full flex flex-col justify-between p-6 group transition-all duration-300 shadow-lg text-left ${feat.bgShade}`}>
+                                            <div className="space-y-4">
+                                                <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center justify-center transition-colors group-hover:scale-105 duration-300">
+                                                    {feat.icon}
+                                                </div>
+                                                <div className="space-y-2">
+                                                    <h4 className="text-sm font-black text-slate-900 uppercase tracking-tight leading-tight group-hover:text-indigo-600 transition-colors">
+                                                        {feat.title}
+                                                    </h4>
+                                                    <p className="text-[11px] text-slate-600 font-semibold leading-relaxed font-sans">
+                                                        {feat.desc}
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div className="space-y-2">
-                                                <h4 className="text-sm font-black text-slate-900 uppercase tracking-tight leading-tight group-hover:text-indigo-600 transition-colors">
+                                        </InteractiveCard>
+                                    </motion.div>
+                                ))}
+                            </div>
+
+                            {/* Row 2: Next 3 Items horizontally */}
+                            <div className="grid grid-cols-3 gap-5">
+                                {secondRowDifferentiators.map((feat, index) => (
+                                    <motion.div
+                                        key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.5, delay: (index + 3) * 0.04 }}
+                                    >
+                                        <InteractiveCard className={`border-2 rounded-[2rem] h-full flex flex-col justify-between p-6 group transition-all duration-300 shadow-lg text-left ${feat.bgShade}`}>
+                                            <div className="space-y-4">
+                                                <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center justify-center transition-colors group-hover:scale-105 duration-300">
+                                                    {feat.icon}
+                                                </div>
+                                                <div className="space-y-2">
+                                                    <h4 className="text-sm font-black text-slate-900 uppercase tracking-tight leading-tight group-hover:text-indigo-600 transition-colors">
+                                                        {feat.title}
+                                                    </h4>
+                                                    <p className="text-[11px] text-slate-600 font-semibold leading-relaxed font-sans">
+                                                        {feat.desc}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </InteractiveCard>
+                                    </motion.div>
+                                ))}
+                            </div>
+
+                        </div>
+
+                        {/* MOBILE VIEW: Retains clean collapsible list tracks to prevent bounding breakage */}
+                        <div className="block sm:hidden space-y-3">
+                            {differentiators.map((feat, index) => {
+                                const isExpanded = mobileExpandedIndex === index;
+                                const activeShade = feat.bgShade.split(' ')[0];
+                                const activeBorder = feat.bgShade.split(' ')[1];
+
+                                return (
+                                    <div
+                                        key={index}
+                                        className={`border-2 rounded-2xl transition-all duration-300 overflow-hidden ${isExpanded ? `${activeShade} ${activeBorder} shadow-md` : 'border-slate-200/70 bg-white'}`}
+                                    >
+                                        <button
+                                            type="button" onClick={() => toggleMobileRow(index)}
+                                            className="w-full p-4 flex items-center justify-between text-left focus:outline-none"
+                                        >
+                                            <div className="flex items-center gap-3 min-w-0">
+                                                <div className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 shadow-sm flex items-center justify-center shrink-0">
+                                                    {feat.icon}
+                                                </div>
+                                                <h4 className="text-xs font-black text-slate-900 uppercase tracking-tight leading-tight truncate">
                                                     {feat.title}
                                                 </h4>
-                                                <p className="text-[11px] text-slate-600 font-semibold leading-relaxed font-sans">
-                                                    {feat.desc}
-                                                </p>
                                             </div>
-                                        </div>
-                                    </InteractiveCard>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
+                                            <div className="p-1 rounded-md text-slate-400 shrink-0 ml-2">
+                                                {isExpanded ? <Minus className="w-3.5 h-3.5 text-indigo-600" /> : <Plus className="w-3.5 h-3.5" />}
+                                            </div>
+                                        </button>
 
+                                        <AnimatePresence initial={false}>
+                                            {isExpanded && (
+                                                <motion.div
+                                                    initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.25, ease: "easeInOut" }}
+                                                >
+                                                    <div className="px-4 pb-4 pt-1 border-t border-slate-100 mt-1">
+                                                        <p className="text-[11px] text-slate-600 font-semibold leading-relaxed font-sans pt-1">
+                                                            {feat.desc}
+                                                        </p>
+                                                    </div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+                    </div>
                 </div>
             </section>
         </motion.div>
