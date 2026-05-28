@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import {
   ArrowRight, ExternalLink, BarChart3, ShieldCheck, Layers,
   AlertTriangle, Network, Activity, Cpu, Trash2, BatteryCharging,
-  GitCommit, ChevronRight, RefreshCw, Leaf, Globe, Atom, Zap
+  ChevronRight, RefreshCw, Leaf, Globe, Zap
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import FloatContainer from '../components/FloatContainer';
@@ -67,7 +67,6 @@ export default function Home() {
     { name: "Material recovery", label: "06", icon: <ShieldCheck className="w-5 h-5 text-emerald-600" />, desc: "Final crystallization yielding exceptional battery-grade secondary raw materials." }
   ];
 
-  // Core Pillars Data Array
   const sustainabilityPillars = {
     'closed-loop': {
       title: "Closed loop recycling",
@@ -110,7 +109,7 @@ export default function Home() {
       </div>
 
       {/* HERO SECTION */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-slate-950 text-white">
+      <section className="relative min-h-screen lg:h-screen flex items-center overflow-hidden bg-slate-950 text-white pt-28 pb-16 lg:py-0">
         <div className="absolute inset-0 z-0 select-none">
           <img
             src={`${baseUrl === '/' ? '' : baseUrl}hero.png`}
@@ -124,21 +123,22 @@ export default function Home() {
           <motion.div style={{ y: yOrb }} className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/4" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center z-20 w-full relative pt-20">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-2xl">
-            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-blue-200 text-sm font-black uppercase tracking-widest mb-8 shadow-2xl">
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center z-20 w-full relative">
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-2xl text-left">
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-blue-200 text-sm font-black uppercase tracking-widest mb-6 shadow-2xl">
               <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" /> Ecosystem Platform Online
             </motion.div>
 
             <div className="mb-6 cursor-pointer select-none group" onClick={cyclePhrase} onMouseEnter={cyclePhrase}>
               <AnimatePresence mode="wait">
+                {/* CALIBRATED TYPOGRAPHY SIZES: Made cleaner and tighter for mobile aspects */}
                 <motion.h1
                   key={phraseIndex}
                   initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   exit={{ opacity: 0, y: -15, filter: "blur(4px)" }}
                   transition={{ duration: 0.4 }}
-                  className="text-5xl lg:text-7xl font-black tracking-tight text-white leading-[1.1] mb-6 uppercase"
+                  className="text-3xl sm:text-4xl lg:text-7xl font-black tracking-tight text-white leading-[1.1] mb-6 uppercase"
                 >
                   {heroPhrases[phraseIndex].prefix}<br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400 transition-all duration-700">
@@ -148,30 +148,47 @@ export default function Home() {
               </AnimatePresence>
             </div>
 
-            <motion.p variants={fadeInUp} className="text-xl text-slate-200 mb-10 leading-relaxed max-w-xl font-medium">
+            <motion.p variants={fadeInUp} className="text-sm sm:text-base lg:text-xl text-slate-200 mb-8 leading-relaxed max-w-xl font-medium">
               A Product life cycle management technology platform architecting sustainable, high-yield ecosystems across India.
             </motion.p>
 
+            {/* MOBILE ONLY LINKS CONTAINER */}
+            <motion.div variants={fadeInUp} className="flex lg:hidden items-center gap-4 mb-8 bg-white/5 border border-white/10 p-3 rounded-2xl backdrop-blur-md max-w-sm">
+              <Link to="/urja" className="w-12 h-12 rounded-xl bg-white p-1.5 flex items-center justify-center shadow-md">
+                <img src={`${baseUrl === '/' ? '' : baseUrl}logo02.png`} alt="Urja Token" className="w-full h-full object-contain" />
+              </Link>
+              <div className="w-px h-8 bg-white/20" />
+              <Link to="/qwiksell" className="w-12 h-12 rounded-xl bg-white p-1.5 flex items-center justify-center shadow-md">
+                <img src={`${baseUrl === '/' ? '' : baseUrl}logo04.png`} alt="Qwiksell Token" className="w-full h-full object-contain" />
+              </Link>
+              <div className="text-[10px] font-mono font-black uppercase tracking-wider text-slate-400 pl-1 leading-snug">
+                Click to explore <br /><span className="text-cyan-400">active layers</span>
+              </div>
+            </motion.div>
+
             <motion.div variants={fadeInUp}>
-              <Link to="/contact" className="bg-gradient-to-r from-blue-500 via-cyan-600 to-blue-700 text-white px-8 py-4 rounded-full font-black uppercase tracking-widest hover:shadow-2xl hover:shadow-blue-500/30 transition-all active:scale-95 inline-flex items-center gap-2 group">
+              <Link to="/contact" className="bg-gradient-to-r from-blue-500 via-cyan-600 to-blue-700 text-white px-8 py-4 rounded-full font-black uppercase tracking-widest hover:shadow-2xl hover:shadow-blue-500/30 transition-all active:scale-95 inline-flex items-center gap-2 group text-xs sm:text-sm">
                 Access Investor Portal <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
           </motion.div>
 
-          {/* Interactive Network Node Field */}
+          {/* DESKTOP ONLY INFRASTRUCTURE GRAPHIC LAYER */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1 }}
-            className="relative lg:h-[650px] flex items-center justify-center select-none"
+            className="hidden lg:flex relative lg:h-[650px] items-center justify-center select-none"
           >
             <div className="relative w-80 h-80 lg:w-[28rem] lg:h-[28rem] flex items-center justify-center">
-              <motion.div variants={chaoticDrift([0, 12, -8, 0], [0, -15, 6, 0], 7.5, 0)} animate="animate" className="absolute top-[-20px] left-[-20px] z-20">
+
+              {/* NODE 01: Urja Mobility - Shifted downwards from top-[-20px] to top-[10px] as verified by image_ca7f44.jpg */}
+              <motion.div variants={chaoticDrift([0, 12, -8, 0], [0, -15, 6, 0], 7.5, 0)} animate="animate" className="absolute top-[10px] left-[-20px] z-20">
                 <Link to="/urja" className="block w-20 h-20 bg-white border-2 border-slate-200 shadow-2xl rounded-2xl p-2.5 flex items-center justify-center hover:border-blue-500 transition-colors bg-white">
                   <img src={`${baseUrl === '/' ? '' : baseUrl}logo02.png`} alt="Urja Node" className="w-full h-full object-contain" />
                 </Link>
               </motion.div>
 
-              <motion.div variants={chaoticDrift([0, -8, 15, 0], [0, 18, -12, 0], 8, 0.2)} animate="animate" className="absolute bottom-[-30px] right-[30px] z-20">
+              {/* NODE 02: QwikSELL Pipeline - Shifted upwards from bottom-[-30px] to bottom-[15px] as verified by image_ca7f44.jpg */}
+              <motion.div variants={chaoticDrift([0, -8, 15, 0], [0, 18, -12, 0], 8, 0.2)} animate="animate" className="absolute bottom-[15px] right-[30px] z-20">
                 <Link to="/qwiksell" className="block w-20 h-20 bg-white border-2 border-slate-200 shadow-2xl rounded-2xl p-2.5 flex items-center justify-center hover:border-cyan-500 transition-colors bg-white">
                   <img src={`${baseUrl === '/' ? '' : baseUrl}logo04.png`} alt="QwikSell Node" className="w-full h-full object-contain" />
                 </Link>
@@ -186,25 +203,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NEW INTEGRATED SECTION: SUSTAINABLE RECYCLING METRICS DIAGRAM BLOCK */}
+      {/* SECTION 2: SUSTAINABLE RECYCLING METRICS DIAGRAM BLOCK */}
       <section className="relative z-20 max-w-7xl mx-auto px-6 py-24">
-        <div className="bg-white border border-slate-200 rounded-[3rem] p-8 md:p-12 shadow-xl relative overflow-hidden">
+        <div className="bg-white border border-slate-200 rounded-[3rem] p-6 md:p-12 shadow-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-blue-500/5 to-transparent blur-3xl pointer-events-none" />
 
           <div className="grid lg:grid-cols-12 gap-12 items-center">
-            {/* Left Content Column */}
             <div className="lg:col-span-5 space-y-6">
               <span className="text-xs font-black text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full">
                 Indigenous Refining Framework
               </span>
-              <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight leading-tight">
+              <h2 className="text-2xl md:text-4xl font-black text-slate-900 uppercase tracking-tight leading-tight">
                 Providing end-to-end sustainable battery recycling solutions
               </h2>
               <p className="text-sm text-slate-600 font-medium leading-relaxed">
                 Through our indigenous technology, we recycle batteries of various types of different chemical compositions, driving mineral purity boundaries while securing critical raw components for downstream industries.
               </p>
 
-              {/* Tab Selector Links List Matrix */}
               <div className="grid grid-cols-2 gap-2 pt-2">
                 {Object.keys(sustainabilityPillars).map((key) => (
                   <button
@@ -219,9 +234,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Dynamic Interactive Diagram Layout Pane */}
             <div className="lg:col-span-7 grid md:grid-cols-12 gap-6 items-center">
-              {/* Asset Token Frame Holder */}
               <div className="md:col-span-5 aspect-square bg-slate-50 border border-slate-100 rounded-2xl p-4 flex items-center justify-center overflow-hidden">
                 <img
                   src={`${baseUrl === '/' ? '' : baseUrl}AboutExigoRecycling.png`}
@@ -230,7 +243,6 @@ export default function Home() {
                 />
               </div>
 
-              {/* Specification Visual Display Viewport Terminal */}
               <div className="md:col-span-7 bg-slate-950 p-6 rounded-2xl border border-slate-800 text-white min-h-[220px] flex flex-col justify-between font-mono text-xs">
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -260,13 +272,12 @@ export default function Home() {
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
       {/* DIAGRAM PANEL 1: THE MACRO THREAT VS THE PLATFORM ARCHITECTURE */}
       <section className="relative z-20 max-w-7xl mx-auto px-6 py-6">
-        <div className="bg-white border border-slate-200 rounded-[3rem] p-8 md:p-12 shadow-xl relative overflow-hidden">
+        <div className="bg-white border border-slate-200 rounded-[3rem] p-6 md:p-12 shadow-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-500/5 via-transparent to-transparent pointer-events-none" />
 
           <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -274,7 +285,7 @@ export default function Home() {
               <span className="text-xs font-black text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full">
                 Ecosystem Operational Vector
               </span>
-              <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tight">
+              <h2 className="text-2xl md:text-3xl font-black text-slate-900 uppercase tracking-tight">
                 Ecosystem Disruption Matrix
               </h2>
               <p className="text-sm text-slate-500 font-medium">
@@ -315,7 +326,7 @@ export default function Home() {
             </div>
 
             <div className="lg:col-span-7">
-              <div className="bg-slate-50 border-2 border-slate-200/60 rounded-[2rem] p-8 min-h-[340px] flex flex-col justify-between relative shadow-inner">
+              <div className="bg-slate-50 border-2 border-slate-200/60 rounded-[2rem] p-6 md:p-8 min-h-[340px] flex flex-col justify-between relative shadow-inner">
                 <AnimatePresence mode="wait">
                   {activeDiagnosticNode === 'threat' ? (
                     <motion.div
@@ -364,7 +375,7 @@ export default function Home() {
           <span className="text-xs font-black text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full">
             Raw Material Reclamation Pipeline
           </span>
-          <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mt-4">
+          <h2 className="text-2xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mt-4">
             Reintroducing critical materials into the global supply chain
           </h2>
           <p className="text-sm text-slate-500 font-bold uppercase tracking-wide mt-2">
@@ -444,7 +455,7 @@ export default function Home() {
 
       {/* DIAGRAM PANEL 3: ENVIRONMENTAL HANDSHAKE MODULE */}
       <section className="relative z-20 max-w-7xl mx-auto px-6 py-12">
-        <div className="bg-white border border-slate-200 rounded-[3rem] p-8 md:p-12 shadow-xl relative overflow-hidden">
+        <div className="bg-white border border-slate-200 rounded-[3rem] p-6 md:p-12 shadow-xl relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-transparent pointer-events-none" />
 
           <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -452,7 +463,7 @@ export default function Home() {
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-black uppercase tracking-widest">
                 <Leaf className="w-3.5 h-3.5 text-emerald-600" /> Environmental Sustainability Handshake
               </div>
-              <h3 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight leading-tight">
+              <h3 className="text-2xl md:text-4xl font-black text-slate-900 uppercase tracking-tight leading-tight">
                 Progressing towards reduced carbon emissions with our sustainable recycling initiatives
               </h3>
               <p className="text-slate-600 font-medium leading-relaxed text-sm md:text-base">
@@ -479,7 +490,7 @@ export default function Home() {
 
       {/* CORE INDUSTRIAL PLATFORM METRICS */}
       <section className="relative z-20 max-w-7xl mx-auto px-6 py-12">
-        <div className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 border border-slate-800 shadow-2xl relative overflow-hidden text-white mb-16">
+        <div className="bg-slate-900 rounded-[2.5rem] p-6 md:p-12 border border-slate-800 shadow-2xl relative overflow-hidden text-white mb-16">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-transparent pointer-events-none" />
           <div className="mb-10 text-center md:text-left">
             <div className="text-xs font-black text-cyan-400 uppercase tracking-widest mb-2">Verified Industrial Infrastructure Matrix</div>
@@ -522,7 +533,7 @@ export default function Home() {
               The EXIGO Subsidiary Operations
             </h2>
             <p className="text-sm text-slate-500 font-medium leading-relaxed">
-              Deep-dive into our specialized, software-driven infrastructure frameworks managing real-world assets.
+              Deep-dive into our software-driven infrastructure frameworks managing real-world assets.
             </p>
           </div>
 
@@ -544,7 +555,7 @@ export default function Home() {
               <Link key={i} to={card.to} className="block group">
                 <motion.div
                   whileHover={{ y: -8, scale: 1.01 }} transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                  className={`h-full bg-white border-2 border-slate-200/80 rounded-[2.5rem] p-8 flex flex-col justify-between shadow-sm transition-all duration-300 relative overflow-hidden ${card.glow}`}
+                  className="h-full bg-white border-2 border-slate-200/80 rounded-[2.5rem] p-8 flex flex-col justify-between shadow-sm transition-all duration-300 relative overflow-hidden group-hover:border-blue-500"
                 >
                   <div className="space-y-6 w-full">
                     <div className="flex justify-between items-start">

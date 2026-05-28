@@ -77,8 +77,8 @@ export default function PartnerWithUs() {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="min-h-screen relative overflow-hidden bg-slate-50 pb-24"
         >
-            {/* FIXED HERO BACKDROP LAYER: Clean padding bounds stop the overlap seen in image_bc7320.jpg */}
-            <section className="relative min-h-[55vh] lg:min-h-[60vh] flex items-center justify-center bg-slate-950 text-white overflow-hidden pt-24 pb-32">
+            {/* FIXED HERO BACKDROP LAYER: Responsive heights stabilize background alignment */}
+            <section className="relative min-h-[40vh] sm:min-h-[55vh] lg:min-h-[60vh] flex items-center justify-center bg-slate-950 text-white overflow-hidden pt-24 pb-32">
                 <div className="absolute inset-0 z-0 opacity-40 select-none">
                     <img
                         src={`${baseUrl === '/' ? '' : baseUrl}contact_us_fold1_card.png`}
@@ -86,18 +86,17 @@ export default function PartnerWithUs() {
                         className="w-full h-full object-cover scale-105 filter blur-[1px]"
                     />
                 </div>
-                {/* Subtle light overlay to bridge into the clean theme */}
                 <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-slate-950/70 to-slate-50 z-10" />
 
-                <div className="max-w-7xl mx-auto px-6 text-center z-20 relative space-y-4">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center z-20 relative space-y-4">
                     <motion.div
                         initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
                         className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-blue-200 text-xs font-black uppercase tracking-widest mb-2 shadow-2xl"
                     >
                         <ShieldCheck className="w-4 h-4 text-cyan-400" /> Institutional Gateway Portal
                     </motion.div>
-                    <h1 className="text-4xl md:text-6xl font-black tracking-tight uppercase leading-[1.1] max-w-5xl mx-auto text-white drop-shadow-2xl">
-                        Collaborate with us to build a better <br />
+                    <h1 className="text-2xl sm:text-4xl lg:text-6xl font-black tracking-tight uppercase leading-[1.2] max-w-5xl mx-auto text-white drop-shadow-2xl">
+                        Collaborate with us to build a better <br className="hidden sm:block" />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-400">
                             future for the next generation
                         </span>
@@ -106,26 +105,26 @@ export default function PartnerWithUs() {
             </section>
 
             {/* CORE CONTROL HUB MATRIX LAYOUT */}
-            <div className="max-w-7xl mx-auto px-6 relative z-20 mt-[-60px]">
-                <div className="grid lg:grid-cols-12 gap-8 items-start">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-20 mt-[-60px]">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
                     {/* LEFT COLUMN: ASYMMETRIC CONTROL PANEL & MATRIX PREVIEW */}
                     <div className="lg:col-span-7 space-y-6">
-                        <div className="bg-white border border-slate-200 shadow-xl rounded-[2.5rem] p-8 space-y-8">
+                        <div className="bg-white border border-slate-200 shadow-xl rounded-[2.5rem] p-4 sm:p-8 space-y-6 sm:space-y-8">
 
                             {/* INTERACTIVE NODE SELECTOR TRACK */}
                             <div className="space-y-4">
-                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4 text-left">
                                     <div>
-                                        <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">1. Select Integration Node</h2>
-                                        <p className="text-xs text-slate-400 font-bold uppercase tracking-wider font-mono">Ecosystem Deployment Layer</p>
+                                        <h2 className="text-lg sm:text-xl font-black text-slate-900 uppercase tracking-tight">1. Select Integration Node</h2>
+                                        <p className="text-[11px] text-slate-400 font-bold uppercase tracking-wider font-mono">Ecosystem Deployment Layer</p>
                                     </div>
-                                    <span className="text-[10px] font-mono font-black text-blue-600 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-md uppercase self-start sm:self-center">
+                                    <span className="text-[9px] font-mono font-black text-blue-600 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-md uppercase self-start sm:self-center">
                                         Active Session Link
                                     </span>
                                 </div>
 
-                                <div className="grid sm:grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {[
                                         { id: 'urja', label: 'Urja Mobility', icon: <Zap className="w-4 h-4" />, desc: "Energy-as-a-Service infrastructure mapping" },
                                         { id: 'qwiksell', label: 'QwikSELL', icon: <Activity className="w-4 h-4" />, desc: "Device liquidation value discovery pipelines" }
@@ -134,20 +133,20 @@ export default function PartnerWithUs() {
                                             key={node.id}
                                             type="button"
                                             onClick={() => setSelectedNode(node.id)}
-                                            className={`p-5 rounded-2xl border-2 text-left flex gap-4 transition-all relative group h-24 items-center ${selectedNode === node.id
+                                            className={`p-4 sm:p-5 rounded-2xl border-2 text-left flex gap-4 transition-all relative group h-24 items-center ${selectedNode === node.id
                                                 ? 'border-blue-600 bg-blue-50/30 shadow-sm'
                                                 : 'border-slate-200 bg-white hover:border-slate-300'
                                                 }`}
                                         >
-                                            <div className={`p-3 rounded-xl border transition-colors ${selectedNode === node.id
+                                            <div className={`p-2.5 rounded-xl border shrink-0 transition-colors ${selectedNode === node.id
                                                 ? 'bg-blue-600 text-white border-blue-600'
                                                 : 'bg-slate-50 text-slate-500 border-slate-200'}`}
                                             >
                                                 {node.icon}
                                             </div>
-                                            <div className="space-y-0.5">
-                                                <div className="text-sm font-black text-slate-900 uppercase tracking-tight leading-none">{node.label}</div>
-                                                <div className="text-[11px] text-slate-400 font-semibold leading-tight">{node.desc}</div>
+                                            <div className="space-y-0.5 min-w-0">
+                                                <div className="text-xs sm:text-sm font-black text-slate-900 uppercase tracking-tight leading-none truncate">{node.label}</div>
+                                                <div className="text-[10px] sm:text-[11px] text-slate-400 font-semibold leading-tight line-clamp-2">{node.desc}</div>
                                             </div>
                                         </button>
                                     ))}
@@ -155,13 +154,13 @@ export default function PartnerWithUs() {
                             </div>
 
                             {/* SIMULATION QUANTITY MATRIX RANGE SELECTOR */}
-                            <div className="space-y-4 border-t border-slate-100 pt-6">
+                            <div className="space-y-4 border-t border-slate-100 pt-6 text-left">
                                 <div>
-                                    <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">2. Adjust Deployment Matrix Scale</h2>
-                                    <p className="text-xs text-slate-400 font-bold uppercase tracking-wider font-mono">{nodeConfig[selectedNode].metricLabel}</p>
+                                    <h2 className="text-lg sm:text-xl font-black text-slate-900 uppercase tracking-tight">2. Adjust Deployment Matrix Scale</h2>
+                                    <p className="text-[11px] text-slate-400 font-bold uppercase tracking-wider font-mono">{nodeConfig[selectedNode].metricLabel}</p>
                                 </div>
 
-                                <div className="bg-slate-50 border border-slate-200/60 p-6 rounded-2xl space-y-4">
+                                <div className="bg-slate-50 border border-slate-200/60 p-4 sm:p-6 rounded-2xl space-y-4">
                                     <div className="relative flex items-center">
                                         <input
                                             type="range" min="10" max="500" step="10"
@@ -170,11 +169,11 @@ export default function PartnerWithUs() {
                                             className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
                                         />
                                     </div>
-                                    <div className="flex justify-between items-center text-xs font-mono font-black text-slate-900">
-                                        <span className="bg-white border border-slate-200 px-3.5 py-1.5 rounded-lg text-blue-600 shadow-sm">
+                                    <div className="flex flex-row justify-between items-center text-xs font-mono font-black text-slate-900">
+                                        <span className="bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-blue-600 shadow-sm text-[11px] sm:text-xs">
                                             {scaleValue} {nodeConfig[selectedNode].unit}
                                         </span>
-                                        <span className="text-slate-400 uppercase text-[10px]">Max Simulation Bound: 500</span>
+                                        <span className="text-slate-400 uppercase text-[9px] sm:text-[10px]">Max Bound: 500</span>
                                     </div>
                                 </div>
                             </div>
@@ -183,29 +182,29 @@ export default function PartnerWithUs() {
 
                         {/* PREVIEW TERMINAL HOUSING VIEWPORT */}
                         <motion.div layout>
-                            <InteractiveCard className="!bg-slate-950 border-none shadow-2xl relative overflow-hidden text-white p-8 rounded-[2.5rem]">
+                            <InteractiveCard className="!bg-slate-950 border-none shadow-2xl relative overflow-hidden text-white p-5 sm:p-8 rounded-[2.5rem]">
                                 <div
                                     className="absolute inset-0 opacity-20 pointer-events-none transition-all duration-500 blur-3xl"
                                     style={{ backgroundColor: nodeConfig[selectedNode].glowColor }}
                                 />
 
-                                <div className="text-xs font-mono text-cyan-400 flex items-center gap-2 mb-6 font-black tracking-widest border-b border-slate-800 pb-3">
-                                    <Terminal className="w-4 h-4 animate-pulse" /> TARGET INFRASTRUCTURE MATRIX PREVIEW
+                                <div className="text-[11px] sm:text-xs font-mono text-cyan-400 flex items-center gap-2 mb-4 sm:mb-6 font-black tracking-widest border-b border-slate-800/80 pb-3 text-left">
+                                    <Terminal className="w-3.5 h-3.5 animate-pulse" /> TARGET INFRASTRUCTURE MATRIX PREVIEW
                                 </div>
 
-                                <div className="grid sm:grid-cols-12 gap-8 items-center relative z-10">
+                                <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 sm:grid-gap-8 items-center relative z-10 text-left">
                                     <div className="sm:col-span-7 space-y-4">
                                         <div>
-                                            <span className="text-[10px] font-black font-mono uppercase tracking-widest text-slate-500 block leading-none">Estimated Asset Pipeline Impact</span>
+                                            <span className="text-[9px] sm:text-[10px] font-black font-mono uppercase tracking-widest text-slate-500 block leading-none">Estimated Asset Pipeline Impact</span>
                                             <motion.div
                                                 key={calculatedImpact} initial={{ scale: 0.97, opacity: 0.8 }} animate={{ scale: 1, opacity: 1 }}
-                                                className="text-3xl font-black text-white tracking-tight mt-1.5"
+                                                className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-2"
                                             >
                                                 {calculatedImpact}
                                             </motion.div>
                                         </div>
 
-                                        <div className="min-h-[72px]">
+                                        <div className="min-h-[60px] sm:min-h-[72px]">
                                             <AnimatePresence mode="wait">
                                                 <motion.p
                                                     key={selectedNode} variants={textFadeVariants} initial="hidden" animate="visible" exit="exit"
@@ -218,7 +217,7 @@ export default function PartnerWithUs() {
                                     </div>
 
                                     <div className="sm:col-span-5 space-y-4">
-                                        <div className="w-full h-24 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center p-4 backdrop-blur-md overflow-hidden group">
+                                        <div className="w-full h-20 sm:h-24 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center p-4 backdrop-blur-md overflow-hidden">
                                             <AnimatePresence mode="wait">
                                                 <motion.img
                                                     key={selectedNode} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
@@ -227,10 +226,10 @@ export default function PartnerWithUs() {
                                                 />
                                             </AnimatePresence>
                                         </div>
-                                        <div className="bg-slate-900/60 backdrop-blur-sm p-4 rounded-xl border border-slate-800/80 space-y-2 font-mono text-[11px]">
+                                        <div className="bg-slate-900/60 backdrop-blur-sm p-4 rounded-xl border border-slate-800/80 space-y-2 font-mono text-[10px] sm:text-[11px]">
                                             <div className="flex justify-between items-center"><span className="text-slate-400">Node Target:</span><span className="text-cyan-400 font-black uppercase">{selectedNode}</span></div>
                                             <div className="flex justify-between items-center"><span className="text-slate-400">Metric Index:</span><span className="text-white font-black">{scaleValue} Units</span></div>
-                                            <div className="flex justify-between items-center"><span className="text-slate-400">B2B Core API:</span><span className="text-emerald-400 font-bold">READY / V3.01</span></div>
+                                            <div className="flex justify-between items-center"><span className="text-slate-400">B2B API Status:</span><span className="text-emerald-400 font-bold">READY / V3.01</span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -239,72 +238,72 @@ export default function PartnerWithUs() {
                     </div>
 
                     {/* RIGHT COLUMN: PAYLOAD INGESTION INPUT PANEL (CONTACT FORM) */}
-                    <div className="lg:col-span-5">
+                    <div className="lg:col-span-5 w-full">
                         <AnimatePresence mode="wait">
                             {!formSubmitted ? (
                                 <motion.div key="form-entry" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-                                    <div className="bg-white border border-slate-200 shadow-xl rounded-[2.5rem] p-8 space-y-6">
+                                    <div className="bg-white border border-slate-200 shadow-xl rounded-[2.5rem] p-5 sm:p-8 space-y-6 text-left">
                                         <div>
-                                            <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">3. Get in touch</h2>
+                                            <h2 className="text-xl sm:text-2xl font-black text-slate-900 uppercase tracking-tight">3. Get in touch</h2>
                                             <p className="text-xs font-black text-blue-600 uppercase tracking-widest mt-1">Secure communication handshake</p>
                                         </div>
 
                                         <form onSubmit={handleSubmit} className="space-y-4">
                                             <div className="grid grid-cols-2 gap-4">
                                                 <div className="space-y-1.5">
-                                                    <label className="block text-[10px] font-black uppercase tracking-wider text-slate-500 font-mono">First name *</label>
+                                                    <label className="block text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-slate-500 font-mono">First name *</label>
                                                     <input
                                                         type="text" name="firstName" required value={formData.firstName} onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 rounded-xl border-2 border-slate-100 focus:outline-none focus:border-blue-600 text-xs font-bold bg-slate-50/50 text-slate-900 transition-colors"
+                                                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border-2 border-slate-100 focus:outline-none focus:border-blue-600 text-xs sm:text-sm font-bold bg-slate-50/50 text-slate-900 transition-colors"
                                                     />
                                                 </div>
                                                 <div className="space-y-1.5">
-                                                    <label className="block text-[10px] font-black uppercase tracking-wider text-slate-500 font-mono">Last name *</label>
+                                                    <label className="block text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-slate-500 font-mono">Last name *</label>
                                                     <input
                                                         type="text" name="lastName" required value={formData.lastName} onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 rounded-xl border-2 border-slate-100 focus:outline-none focus:border-blue-600 text-xs font-bold bg-slate-50/50 text-slate-900 transition-colors"
+                                                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border-2 border-slate-100 focus:outline-none focus:border-blue-600 text-xs sm:text-sm font-bold bg-slate-50/50 text-slate-900 transition-colors"
                                                     />
                                                 </div>
                                             </div>
 
                                             <div className="grid grid-cols-12 gap-4">
                                                 <div className="col-span-4 space-y-1.5">
-                                                    <label className="block text-[10px] font-black uppercase tracking-wider text-slate-500 font-mono">Code</label>
+                                                    <label className="block text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-slate-500 font-mono">Code</label>
                                                     <input
                                                         type="text" name="countryCode" required value={formData.countryCode} onChange={handleInputChange}
-                                                        className="w-full px-3 py-3 rounded-xl border-2 border-slate-100 focus:outline-none focus:border-blue-600 text-xs font-mono font-black text-center bg-slate-50/50 text-slate-900 transition-colors"
+                                                        className="w-full px-2 py-2.5 sm:py-3 rounded-xl border-2 border-slate-100 focus:outline-none focus:border-blue-600 text-xs font-mono font-black text-center bg-slate-50/50 text-slate-900 transition-colors"
                                                     />
                                                 </div>
                                                 <div className="col-span-8 space-y-1.5">
-                                                    <label className="block text-[10px] font-black uppercase tracking-wider text-slate-500 font-mono">Phone Number *</label>
+                                                    <label className="block text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-slate-500 font-mono">Phone Number *</label>
                                                     <input
                                                         type="tel" name="phoneNumber" required value={formData.phoneNumber} onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 rounded-xl border-2 border-slate-100 focus:outline-none focus:border-blue-600 text-xs font-bold bg-slate-50/50 text-slate-900 transition-colors"
+                                                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border-2 border-slate-100 focus:outline-none focus:border-blue-600 text-xs sm:text-sm font-bold bg-slate-50/50 text-slate-900 transition-colors"
                                                     />
                                                 </div>
                                             </div>
 
                                             <div className="space-y-1.5">
-                                                <label className="block text-[10px] font-black uppercase tracking-wider text-slate-500 font-mono">Email *</label>
+                                                <label className="block text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-slate-500 font-mono">Email *</label>
                                                 <input
                                                     type="email" name="email" required value={formData.email} onChange={handleInputChange}
-                                                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-100 focus:outline-none focus:border-blue-600 text-xs font-bold bg-slate-50/50 text-slate-900 transition-colors"
+                                                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border-2 border-slate-100 focus:outline-none focus:border-blue-600 text-xs sm:text-sm font-bold bg-slate-50/50 text-slate-900 transition-colors"
                                                     placeholder="officer@company.com"
                                                 />
                                             </div>
 
                                             <div className="space-y-1.5">
-                                                <label className="block text-[10px] font-black uppercase tracking-wider text-slate-500 font-mono">Message</label>
+                                                <label className="block text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-slate-500 font-mono">Message</label>
                                                 <textarea
                                                     name="message" rows="3" value={formData.message} onChange={handleInputChange}
-                                                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-100 focus:outline-none focus:border-blue-600 text-xs font-bold bg-slate-50/50 text-slate-900 transition-colors resize-none"
+                                                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border-2 border-slate-100 focus:outline-none focus:border-blue-600 text-xs sm:text-sm font-bold bg-slate-50/50 text-slate-900 transition-colors resize-none"
                                                     placeholder="Outline operational scope directives..."
                                                 />
                                             </div>
 
                                             <button
                                                 type="submit" disabled={isSubmitting || !formData.firstName || !formData.email || !formData.phoneNumber}
-                                                className="w-full mt-2 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black uppercase tracking-widest rounded-xl shadow-lg hover:shadow-blue-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-40 text-xs"
+                                                className="w-full mt-2 py-3.5 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black uppercase tracking-widest rounded-xl shadow-lg hover:shadow-blue-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-40 text-xs"
                                             >
                                                 {isSubmitting ? (
                                                     <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -317,13 +316,13 @@ export default function PartnerWithUs() {
                                 </motion.div>
                             ) : (
                                 <motion.div key="form-success" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="w-full">
-                                    <div className="bg-slate-950 text-white border-none shadow-2xl text-center py-12 px-6 rounded-[2.5rem]">
-                                        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: 0.2 }} className="w-16 h-16 bg-emerald-500 text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl">
-                                            <CheckCircle2 className="w-10 h-10" />
+                                    <div className="bg-slate-950 text-white border-none shadow-2xl text-center py-12 px-4 sm:px-6 rounded-[2.5rem]">
+                                        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: 0.2 }} className="w-14 h-14 bg-emerald-500 text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl">
+                                            <CheckCircle2 className="w-8 h-8" />
                                         </motion.div>
-                                        <h3 className="text-2xl font-black uppercase tracking-tight mb-2 text-white">Handshake Payload Logged</h3>
+                                        <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight mb-2 text-white">Handshake Payload Logged</h3>
                                         <p className="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-6">Transmission Successful</p>
-                                        <div className="bg-slate-900 p-5 rounded-xl text-left border border-slate-800 max-w-sm mx-auto font-mono text-xs leading-relaxed text-slate-300">
+                                        <div className="bg-slate-900 p-4 sm:p-5 rounded-xl text-left border border-slate-800 max-w-sm mx-auto font-mono text-xs leading-relaxed text-slate-300">
                                             <span className="text-emerald-400 font-bold">✓</span> Handshake payload parsed cleanly.<br />
                                             <span className="text-emerald-400 font-bold">✓</span> Dispatched to <span className="text-white">partners@exigocleantech.com</span>.<br /><br />
                                             Our deployment architects will schedule an ingestion framework synchronization sync within 24 operational hours.
@@ -337,36 +336,36 @@ export default function PartnerWithUs() {
                 </div>
 
                 {/* GEOGRAPHIC INFRASTRUCTURE FOOTPRINT CARD MATRIX */}
-                <footer className="mt-20 border-t border-slate-200/60 pt-16 space-y-8">
-                    <div className="grid md:grid-cols-2 gap-4">
-                        <a href="mailto:info@exigorecycling.com" className="p-5 bg-white border border-slate-200 rounded-2xl flex items-center gap-4 shadow-sm hover:border-blue-400 transition-colors group">
-                            <div className="p-3 rounded-xl bg-blue-50 text-blue-600 border border-blue-100"><Mail className="w-5 h-5" /></div>
+                <footer className="mt-16 sm:mt-20 border-t border-slate-200/60 pt-12 sm:pt-16 space-y-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <a href="mailto:info@exigorecycling.com" className="p-4 sm:p-5 bg-white border border-slate-200 rounded-2xl flex items-center gap-4 shadow-sm hover:border-blue-400 transition-colors group text-left">
+                            <div className="p-3 rounded-xl bg-blue-50 text-blue-600 border border-blue-100"><Mail className="w-4 sm:w-5 h-4 sm:h-5" /></div>
                             <div>
-                                <div className="text-[10px] font-mono font-black uppercase text-slate-400 leading-none">Global Mailing Node</div>
-                                <div className="text-sm font-black text-slate-800 tracking-tight group-hover:text-blue-600 transition-colors mt-1">info@exigorecycling.com</div>
+                                <div className="text-[9px] sm:text-[10px] font-mono font-black uppercase text-slate-400 leading-none">Global Mailing Node</div>
+                                <div className="text-xs sm:text-sm font-black text-slate-800 tracking-tight group-hover:text-blue-600 transition-colors mt-1">info@exigorecycling.com</div>
                             </div>
                         </a>
-                        <a href="tel:+919599218908" className="p-5 bg-white border border-slate-200 rounded-2xl flex items-center gap-4 shadow-sm hover:border-blue-400 transition-colors group">
-                            <div className="p-3 rounded-xl bg-blue-50 text-blue-600 border border-blue-100"><Phone className="w-5 h-5" /></div>
+                        <a href="tel:+919599218908" className="p-4 sm:p-5 bg-white border border-slate-200 rounded-2xl flex items-center gap-4 shadow-sm hover:border-blue-400 transition-colors group text-left">
+                            <div className="p-3 rounded-xl bg-blue-50 text-blue-600 border border-blue-100"><Phone className="w-4 sm:w-5 h-4 sm:h-5" /></div>
                             <div>
-                                <div className="text-[10px] font-mono font-black uppercase text-slate-400 leading-none">Direct Desk Line</div>
-                                <div className="text-sm font-black text-slate-800 tracking-tight group-hover:text-blue-600 transition-colors mt-1">+91 95992 18908</div>
+                                <div className="text-[9px] sm:text-[10px] font-mono font-black uppercase text-slate-400 leading-none">Direct Desk Line</div>
+                                <div className="text-xs sm:text-sm font-black text-slate-800 tracking-tight group-hover:text-blue-600 transition-colors mt-1">+91 95992 18908</div>
                             </div>
                         </a>
                     </div>
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
                         {[
                             { type: "Corporate Office", info: "Office no. 003, Ground Floor, Time Tower, M.G.Road, Gurugram - 122002", icon: <Building className="w-4 h-4 text-blue-600" />, accent: "hover:border-blue-400" },
                             { type: "Registered Office", info: "F-36, First Floor, East of Kailash, New Delhi, India – 110065", icon: <Globe className="w-4 h-4 text-purple-600" />, accent: "hover:border-purple-400" },
                             { type: "Our Plant", info: "BARSAT ROAD, VILLAGE BARSAT NEAR VICTOR SCHOOL KARNAL HARYANA-132001", icon: <Factory className="w-4 h-4 text-emerald-600" />, accent: "hover:border-emerald-400" }
                         ].map((loc, index) => (
-                            <div key={index} className={`p-6 bg-white border border-slate-200 rounded-[2rem] flex flex-col justify-between shadow-sm transition-colors duration-300 min-h-[150px] ${loc.accent}`}>
+                            <div key={index} className={`p-5 sm:p-6 bg-white border border-slate-200 rounded-[2rem] flex flex-col justify-between shadow-sm transition-colors duration-300 min-h-[140px] ${loc.accent}`}>
                                 <div className="w-8 h-8 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-center">
                                     {loc.icon}
                                 </div>
                                 <div className="mt-4">
-                                    <h4 className="text-[10px] font-mono font-black text-slate-400 uppercase tracking-widest leading-none mb-1.5">{loc.type}</h4>
+                                    <h4 className="text-[9px] sm:text-[10px] font-mono font-black text-slate-400 uppercase tracking-widest leading-none mb-1.5">{loc.type}</h4>
                                     <p className="text-xs font-bold text-slate-800 tracking-tight leading-relaxed">{loc.info}</p>
                                 </div>
                             </div>
