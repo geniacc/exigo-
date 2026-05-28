@@ -28,11 +28,14 @@ jobs:
       run: npm install esbuild --save-dev
 
     - name: Grant Executive Binaries Permissions
-      # This layer gives Linux permission to run Vite before building
       run: chmod +x node_modules/.bin/vite
 
     - name: Execute Production Build
       run: npm run build
+
+    - name: Inject Single Page Application Routing Fallback
+      # This duplicates index.html into a 404.html file so GitHub Pages routes seamlessly
+      run: cp dist/index.html dist/404.html
 
     - name: Deploy Payload to GitHub Pages Branch
       uses: JamesIves/github-pages-deploy-action@v4
