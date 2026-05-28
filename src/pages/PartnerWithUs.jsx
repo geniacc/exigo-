@@ -16,6 +16,9 @@ export default function PartnerWithUs() {
     const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    // Safely references Vite's base environment subfolder structure path
+    const baseUrl = import.meta.env.BASE_URL || '/';
+
     const nodeConfig = {
         urja: {
             title: "Urja Mobility",
@@ -25,7 +28,7 @@ export default function PartnerWithUs() {
             unit: "EV Batteries",
             multiplier: 120000,
             desc: "Deploy smart, IoT-enabled lithium power packs under high-retention BaaS infrastructure leasing models backed by 60-month corporate warranties.",
-            logo: "/logo02.png"
+            logo: "logo02.png"
         },
         digi2l: {
             title: "Digi2L Platform",
@@ -35,7 +38,7 @@ export default function PartnerWithUs() {
             unit: "Units Restructured",
             multiplier: 2200,
             desc: "Plug into India's premier tech-enabled appliance trade-in matrix via plug-and-play APIs, capturing a massive 35% secondary market growth opportunity.",
-            logo: "/logo03.png"
+            logo: "logo03.png"
         },
         qwiksell: {
             title: "QwikSELL Pipeline",
@@ -45,7 +48,7 @@ export default function PartnerWithUs() {
             unit: "INR Evaluated",
             multiplier: 15000,
             desc: "Unlock maximum hardware capital reclamation using automated 50+ parameter real-time AI pricing diagnostic software suites.",
-            logo: "/logo01.png"
+            logo: "logo04.png" // Ensured reference name correlates correctly
         }
     };
 
@@ -117,8 +120,8 @@ export default function PartnerWithUs() {
                                         type="button"
                                         onClick={() => setSelectedNode(node.id)}
                                         className={`p-5 rounded-2xl border-4 text-left flex flex-col justify-between h-36 transition-all relative group ${selectedNode === node.id
-                                                ? 'border-[#4f2876] bg-purple-100/40 shadow-inner scale-[0.98]'
-                                                : 'border-slate-300 bg-white hover:border-slate-400'
+                                            ? 'border-[#4f2876] bg-purple-100/40 shadow-inner scale-[0.98]'
+                                            : 'border-slate-300 bg-white hover:border-slate-400'
                                             }`}
                                     >
                                         <div className={`p-2.5 rounded-xl transition-colors ${selectedNode === node.id ? 'bg-[#4f2876] text-white' : 'bg-slate-200 text-slate-900'} ${node.color}`}>
@@ -208,7 +211,7 @@ export default function PartnerWithUs() {
                                                 <motion.img
                                                     key={selectedNode}
                                                     initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-                                                    src={nodeConfig[selectedNode].logo}
+                                                    src={`${baseUrl === '/' ? '' : baseUrl}${nodeConfig[selectedNode].logo}`}
                                                     alt="Sub-brand Integration Logo Asset"
                                                     className="w-full h-full object-contain filter drop-shadow-md group-hover:scale-105 transition-transform duration-300"
                                                 />
