@@ -38,8 +38,8 @@ export default function Home() {
   const { scrollYProgress } = useScroll();
   const yOrb = useTransform(scrollYProgress, [0, 1], [0, 300]);
 
-  // Safely references Vite's base environment string ('/exigo-/') dynamically
-  const baseUrl = import.meta.env.BASE_URL;
+  // Unified fallback: tries to read Vite's base subfolder path, otherwise defaults to root
+  const baseUrl = import.meta.env.BASE_URL || '/';
 
   const heroPhrases = [
     { prefix: "Powering", highlight: "The Circular Economy" },
@@ -128,7 +128,8 @@ export default function Home() {
                 className="absolute top-[-30px] left-[-30px] z-20"
               >
                 <Link to="/urja" className="block w-20 h-20 bg-white border-2 border-slate-200/90 shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-2xl p-2.5 flex items-center justify-center hover:border-[#39aad6] transition-colors duration-300 cursor-pointer bg-white">
-                  <img src={`${baseUrl}logo02.png`} alt="Urja Node" className="w-full h-full object-contain" />
+                  {/* Clean path resolution syntax handles asset tracking perfectly */}
+                  <img src={`${baseUrl === '/' ? '' : baseUrl}logo02.png`} alt="Urja Node" className="w-full h-full object-contain" />
                 </Link>
               </motion.div>
 
@@ -141,7 +142,7 @@ export default function Home() {
                 className="absolute top-[-40px] right-[-20px] z-20"
               >
                 <Link to="/digi2l" className="block w-20 h-20 bg-white border-2 border-slate-200/90 shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-2xl p-2.5 flex items-center justify-center hover:border-[#983d97] transition-colors duration-300 cursor-pointer bg-white">
-                  <img src={`${baseUrl}logo03.png`} alt="Digi2L Node" className="w-full h-full object-contain" />
+                  <img src={`${baseUrl === '/' ? '' : baseUrl}logo03.png`} alt="Digi2L Node" className="w-full h-full object-contain" />
                 </Link>
               </motion.div>
 
@@ -154,7 +155,7 @@ export default function Home() {
                 className="absolute bottom-[-45px] right-[40px] z-20"
               >
                 <Link to="/qwiksell" className="block w-20 h-20 bg-white border-2 border-slate-200/90 shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-2xl p-2.5 flex items-center justify-center hover:border-[#23b3c8] transition-colors duration-300 cursor-pointer bg-white">
-                  <img src={`${baseUrl}logo04.png`} alt="QwikSell Node" className="w-full h-full object-contain" />
+                  <img src={`${baseUrl === '/' ? '' : baseUrl}logo04.png`} alt="QwikSell Node" className="w-full h-full object-contain" />
                 </Link>
               </motion.div>
 
@@ -169,7 +170,7 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-purple-100/30 to-blue-50/30 rounded-full" />
                 <img
-                  src={`${baseUrl}logo01.png`} alt="EXIGO Nucleus"
+                  src={`${baseUrl === '/' ? '' : baseUrl}logo01.png`} alt="EXIGO Nucleus"
                   className="w-full h-full object-contain relative z-10 drop-shadow-2xl group-hover:scale-102 transition-transform duration-300"
                 />
               </FloatContainer>
@@ -243,7 +244,7 @@ export default function Home() {
                 <motion.div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${card.color} origin-left`} initial={{ scaleX: 0 }} whileHover={{ scaleX: 1 }} transition={{ duration: 0.4 }} />
                 <div>
                   <div className="w-full h-24 border border-slate-200/60 rounded-2xl flex items-center justify-center p-4 mb-6 shadow-sm overflow-hidden relative group-hover:border-purple-300 transition-colors bg-white">
-                    <img src={`${baseUrl}${card.logo}`} alt={`${card.title} Corporate Identity`} className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" />
+                    <img src={`${baseUrl === '/' ? '' : baseUrl}${card.logo}`} alt={`${card.title} Corporate Identity`} className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" />
                   </div>
                   <h3 className="text-2xl font-black text-slate-900 mb-3 uppercase tracking-tight flex items-center gap-2 group-hover:text-purple-700 transition-colors">
                     {card.title} <ExternalLink className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
