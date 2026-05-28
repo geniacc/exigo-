@@ -1,0 +1,28 @@
+name: Production Build Verification
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clone Repository Matrix
+      uses: actions/checkout@v4
+
+    - name: Initialize Node.js Environment
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install Project Dependencies
+      run: npm install --legacy-peer-deps
+
+    - name: Execute Production Compilation Test
+      # Forced to show absolute detailed logs if it hits a broken file path import
+      run: npm run build -- --debug
