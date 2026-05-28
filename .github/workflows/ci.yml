@@ -23,6 +23,9 @@ jobs:
     - name: Install Project Dependencies
       run: npm install --legacy-peer-deps
 
+    - name: Grant Executive Binaries Permissions
+      # This explicitly force-grants execution rights to Vite on the Linux virtual machine
+      run: chmod +x node_modules/.bin/vite
+
     - name: Execute Production Compilation Test
-      # Forced to show absolute detailed logs if it hits a broken file path import
-      run: npm run build -- --debug
+      run: npm run build
